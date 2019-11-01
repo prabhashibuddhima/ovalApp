@@ -1,0 +1,72 @@
+<!-- 
+//copyrights by prabhashibuddhima -->
+<ion-content class="content-back">
+    <ion-grid>
+        <!-- Calculator comes here -->
+        <ion-row style="margin-top: 10vw; margin-left: 2%; margin-right: 2%">
+            <ion-col>
+                <ion-label style="color:#343434; font-size: 5.5vw; font-family: Raleway-Bold; text-align: left">
+                    Calculate your dates
+                </ion-label>
+                <!-- 
+//copyrights by prabhashibuddhima -->
+                <ion-item align="center" style="width: 80%;" class="inFeilds" lines="none" style="margin-top: 4vw;">
+                    <ion-datetime displayFormat="DD/MM/YYYY" placeholder="First day of your last period" min="2008" id="periodDay"
+                        [(ngModel)]="periodDay" class="ion-text-center" name="periodDay" required></ion-datetime>
+
+                </ion-item>
+
+                <!-- 
+//copyrights by prabhashibuddhima -->
+                <ion-item style="width: 80%" class="inFeilds" lines="none" style="margin-top: 4vw;">
+                    <ion-input id="cycleDays" placeholder="Your average cycle days" type="text" [(ngModel)]="cycleDays"
+                        name="cycleDays" required maxlength="2" pattern="[0-9]{10}"></ion-input>
+                </ion-item>
+                <ion-button class="readMoreBtn" style="width: 50vw; height: 14vw" (click)="openCalendar()">
+                    Calculate my dates
+                </ion-button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="calShow == true" style="margin-top: 10vw; margin-left: 2%; margin-right: 2%">
+
+            <ion-col size="3" text-left>
+                <ion-button fill="clear" (click)="back()" style="width: 9vw; height: 9vw">
+                    <ion-icon name="arrow-back" slot="icon-only" style="width: 5vw; height: 5vw"></ion-icon>
+                </ion-button>
+            </ion-col>
+
+            <ion-col size="6" text-right>
+                <p align="center" style="font-size: 5.5vw" *ngIf="calendar.mode == 'month' || calendar.mode == 'week' || calendar.mode == 'day'">
+                    {{viewTitle}}
+                </p>
+
+            </ion-col>
+
+            <!-- 
+//copyrights by prabhashibuddhima -->
+            <ion-col size="3" text-right>
+                <ion-button fill="clear" (click)="next()" style="width: 9vw; height: 9vw">
+                    <ion-icon name="arrow-forward" slot="icon-only" style="width: 5vw; height: 5vw"></ion-icon>
+                </ion-button>
+            </ion-col>
+
+        </ion-row>
+        <ion-row *ngIf="calShow == true">
+            <ion-col>
+                <ng-template #template let-view="view" let-row="row" let-col="col">
+                    <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
+                        {{view.dates[row*7+col].label}}
+                    </div>
+                </ng-template>
+                <!-- 
+//copyrights by prabhashibuddhima -->
+                <calendar [monthviewDisplayEventTemplate]="template" [eventSource]="eventSource" [calendarMode]="calendar.mode"
+                    [currentDate]="calendar.currentDate" [showEventDetail]="false" (onTitleChanged)="onViewTitleChanged($event)">
+                </calendar>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>

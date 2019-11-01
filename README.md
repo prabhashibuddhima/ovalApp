@@ -32,5 +32,4 @@ make sure you add your scsss to your global.scss file
 cheers!!
 
 -Prabhashi
-
-(please note that this one is made by me for testing purposes of ionic calendar for all the ionic developers struggling with <calendar>)
+(please note that this one is made by me for testing purposes of ionic calendar for all the ionic developers struggling with calendar css)
